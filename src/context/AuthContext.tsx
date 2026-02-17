@@ -1,6 +1,12 @@
-import { createContext } from "react";
+import { createContext, ReactNode, useReducer } from "react";
 
-import { AuthState, AuthAction, AuthContextType } from "@/types/auth.types";
+import {
+  AuthState,
+  AuthAction,
+  AuthContextType,
+  LoginCredentials,
+  SignupCredentials,
+} from "@/types/auth.types";
 
 const initialState: AuthState = {
   user: undefined,
@@ -61,3 +67,23 @@ export const AuthStateContext = createContext<AuthState | undefined>(undefined);
 export const AuthDispatchContext = createContext<
   Omit<AuthContextType, "state"> | undefined
 >(undefined);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(authReducer, initialState);
+
+  async function login(credentials: LoginCredentials) {}
+
+  function logout() {}
+
+  async function signup(credentials: SignupCredentials) {}
+
+  function clearError() {}
+
+  return (
+    <AuthStateContext value={state}>
+      <AuthDispatchContext value={{ login, logout, signup, clearError }}>
+        {children}
+      </AuthDispatchContext>
+    </AuthStateContext>
+  );
+}
