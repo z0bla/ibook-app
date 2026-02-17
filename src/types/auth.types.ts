@@ -36,6 +36,7 @@ export interface AuthState {
   user?: User;
   isAuthenticated: boolean;
   error?: string;
+  isLoading: boolean;
 }
 
 /**
@@ -46,7 +47,8 @@ export type AuthAction =
   | { type: 'LOGOUT' }
   | { type: 'SIGNUP'; payload: User }
   | { type: 'SET_ERROR'; payload: string }
-  | { type: 'CLEAR_ERROR' };
+  | { type: 'CLEAR_ERROR' }
+  | { type: 'SET_LOADING', payload: boolean }
 
 /**
  * AuthContextType defines all methods and state exposed by AuthContext
