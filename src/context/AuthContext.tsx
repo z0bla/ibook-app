@@ -1,4 +1,6 @@
-import { AuthState, AuthAction } from "@/types/auth.types";
+import { createContext } from "react";
+
+import { AuthState, AuthAction, AuthContextType } from "@/types/auth.types";
 
 const initialState: AuthState = {
   user: undefined,
@@ -53,3 +55,7 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
     }
   }
 }
+
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined,
+);
