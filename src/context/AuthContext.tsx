@@ -82,7 +82,26 @@ export const AuthDispatchContext = createContext<
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  async function login(credentials: LoginCredentials) {}
+  async function login(credentials: LoginCredentials) {
+    const { email, password } = credentials;
+
+    dispatch({ type: "CLEAR_ERROR" });
+    dispatch({ type: "SET_LOADING", payload: true });
+
+    // Simulate network delay
+    await delay(1000);
+
+    const user = mockUsers.find(
+      (u) => u.email.toLowerCase() === email.toLowerCase(),
+    );
+
+    if (!user || user.password !== password) {
+      dispatch({ type: "SET_ERROR", payload: "Invalid email or password" });
+      return;
+    }
+
+    dispatch({ type: "LOGIN", payload: user });
+  }
 
   function logout() {}
 
