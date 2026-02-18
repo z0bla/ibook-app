@@ -19,6 +19,13 @@ const initialState: AuthState = {
   isLoading: false,
 };
 
+// Function to simulate network delay
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 function authReducer(state: AuthState, action: AuthAction): AuthState {
   switch (action.type) {
     // Same state returned for both LOGIN and SIGNUP actions
