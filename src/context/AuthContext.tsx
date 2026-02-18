@@ -107,7 +107,48 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "LOGOUT" });
   }
 
-  async function signup(credentials: SignupCredentials) {}
+  async function signup(credentials: SignupCredentials) {
+    const { email, password, name, phone } = credentials;
+
+    dispatch({ type: "CLEAR_ERROR" });
+    dispatch({ type: "SET_LOADING", payload: true });
+
+    // Check if required fields are filled
+    if (!email || !password || !name) {
+      dispatch({
+        type: "SET_ERROR",
+        payload: "Please fill out all required fields",
+      });
+      return;
+    }
+
+    // Simulate network delay
+    await delay(1000);
+
+    // Check if user with this email already exists
+    const existingUser = mockUsers.find(
+      (u) => u.email.toLowerCase() === email.toLowerCase(),
+    );
+
+    if (existingUser) {
+      dispatch({ type: "SET_ERROR", payload: "User already exists" });
+      return;
+    }
+
+    const newUser: User = {
+      id: String(Math.random()), // TODO: Temporary solution, generate random ID
+      email,
+      password, // TODO: Encrypt password
+      name,
+      phone,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Simulating saving user to database
+    mockUsers.push(newUser);
+
+    dispatch({ type: "SIGNUP", payload: newUser });
+  }
 
   function clearError() {}
 
