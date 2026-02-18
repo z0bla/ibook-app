@@ -103,7 +103,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "LOGIN", payload: user });
   }
 
-  function logout() {}
+  function logout() {
+    dispatch({ type: "LOGOUT" });
+  }
 
   async function signup(credentials: SignupCredentials) {}
 
