@@ -150,7 +150,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "SIGNUP", payload: newUser });
   }
 
-  function clearError() {}
+  function clearError() {
+    dispatch({ type: "CLEAR_ERROR" });
+  }
 
   return (
     <AuthStateContext value={state}>
