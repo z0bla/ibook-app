@@ -6,7 +6,11 @@ import {
   AuthContextType,
   LoginCredentials,
   SignupCredentials,
+  User,
 } from "@/types/auth.types";
+
+import users from "@/data/users.json";
+const mockUsers: User[] = users;
 
 const initialState: AuthState = {
   user: undefined,
