@@ -136,9 +136,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const newUser: User = {
-      id: String(Math.random()), // TODO: Temporary solution, generate random ID
+      id: crypto.randomUUID(),
       email,
-      password, // TODO: Encrypt password
+      password,
       name,
       phone,
       createdAt: new Date().toISOString(),
