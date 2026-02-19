@@ -152,6 +152,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    const passwordError = validatePassword(password);
+
+    if (passwordError) {
+      dispatch({ type: "SET_ERROR", payload: passwordError });
+      return;
+    }
+
     // Simulate network delay
     await delay(1000);
 
