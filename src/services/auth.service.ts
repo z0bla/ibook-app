@@ -4,12 +4,14 @@ import users from "@/data/users.json";
 
 const mockUsers: User[] = users as User[];
 
+function findUserByEmail(email: string): User | undefined {
+  return mockUsers.find((u) => u.email.toLowerCase() === email.toLowerCase());
+}
+
 export async function loginUser(credentials: LoginCredentials): Promise<User> {
   await delay(1000);
 
-  const user = mockUsers.find(
-    (u) => u.email.toLowerCase() === credentials.email.toLowerCase(),
-  );
+  const user = findUserByEmail(credentials.email);
 
   if (!user || user.password !== credentials.password) {
     throw new Error("Invalid email or password.");
@@ -23,9 +25,7 @@ export async function signupUser(
 ): Promise<User> {
   await delay(1000);
 
-  const existingUser = mockUsers.find(
-    (u) => u.email.toLowerCase() === credentials.email.toLowerCase(),
-  );
+  const existingUser = findUserByEmail(credentials.email);
 
   if (existingUser) {
     throw new Error("User already exists.");
