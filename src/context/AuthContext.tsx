@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useReducer } from "react";
 
+import { loginUser, signupUser } from "@/services/auth.service";
 import { delay, validatePassword } from "@/utils/auth.utils";
 import {
   AuthState,
@@ -9,9 +10,6 @@ import {
   SignupCredentials,
   User,
 } from "@/types/auth.types";
-
-import users from "@/data/users.json";
-const mockUsers: User[] = users;
 
 const initialState: AuthState = {
   user: undefined,
@@ -85,16 +83,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Simulate network delay
     await delay(1000);
 
-    const user = mockUsers.find(
-      (u) => u.email.toLowerCase() === email.toLowerCase(),
-    );
-
-    if (!user || user.password !== password) {
-      dispatch({ type: "SET_ERROR", payload: "Invalid email or password" });
-      return;
+    try {
+      const user = await loginUser(credentials);
+      dispatch({ type: "LOGIN", payload: user });
+    } catch (error) {
+      dispatch({
+        type: "SET_ERROR",
+        payload:
+          error instanceof Error ? error.message : "Something went wrong.",
+      });
     }
-
-    dispatch({ type: "LOGIN", payload: user });
   }
 
   function logout() {
@@ -104,51 +102,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function signup(credentials: SignupCredentials) {
     const { email, password, name, phone } = credentials;
 
-    dispatch({ type: "CLEAR_ERROR" });
-    dispatch({ type: "SET_LOADING", payload: true });
-
     // Check if required fields are filled
     if (!email || !password || !name) {
       dispatch({
         type: "SET_ERROR",
-        payload: "Please fill out all required fields",
+        payload: "Please fill out all required fields.",
       });
       return;
     }
 
     const passwordError = validatePassword(password);
-
     if (passwordError) {
       dispatch({ type: "SET_ERROR", payload: passwordError });
       return;
     }
 
+    dispatch({ type: "CLEAR_ERROR" });
+    dispatch({ type: "SET_LOADING", payload: true });
+
     // Simulate network delay
     await delay(1000);
 
-    // Check if user with this email already exists
-    const existingUser = mockUsers.find(
-      (u) => u.email.toLowerCase() === email.toLowerCase(),
-    );
-
-    if (existingUser) {
-      dispatch({ type: "SET_ERROR", payload: "User already exists" });
-      return;
+    try {
+      const user = await signupUser(credentials);
+      dispatch({ type: "SIGNUP", payload: user });
+    } catch (error) {
+      dispatch({
+        type: "SET_ERROR",
+        payload:
+          error instanceof Error ? error.message : "Something went wrong.",
+      });
     }
-
-    const newUser: User = {
-      id: crypto.randomUUID(),
-      email,
-      password,
-      name,
-      phone,
-      createdAt: new Date().toISOString(),
-    };
-
-    // Simulating saving user to database
-    mockUsers.push(newUser);
-
-    dispatch({ type: "SIGNUP", payload: newUser });
   }
 
   function clearError() {
