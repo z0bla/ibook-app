@@ -8,7 +8,6 @@ import {
   AuthContextType,
   LoginCredentials,
   SignupCredentials,
-  User,
 } from "@/types/auth.types";
 
 const initialState: AuthState = {
@@ -75,8 +74,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   async function login(credentials: LoginCredentials) {
-    const { email, password } = credentials;
-
     dispatch({ type: "CLEAR_ERROR" });
     dispatch({ type: "SET_LOADING", payload: true });
 
@@ -100,7 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signup(credentials: SignupCredentials) {
-    const { email, password, name, phone } = credentials;
+    const { email, password, name } = credentials;
 
     // Check if required fields are filled
     if (!email || !password || !name) {
