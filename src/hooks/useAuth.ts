@@ -2,6 +2,11 @@ import { useContext } from "react";
 import { AuthContextType, AuthState } from "@/types/auth.types";
 import { AuthStateContext, AuthDispatchContext } from "@/context/AuthContext";
 
+/**
+ * Custom hook for accessing AuthContext
+ *
+ * @returns {AuthContextType} Object containing authorization properties
+ */
 export function useAuth(): AuthContextType {
   const stateContext = useContext(AuthStateContext);
   const dispatchContext = useContext(AuthDispatchContext);
