@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { AuthContextType, AuthState } from "@/types/auth.types";
-import { AuthStateContext, AuthDispatchContext } from "@/context/AuthContext";
+import { useContext } from 'react';
+import { AuthContextType, AuthState } from '@/types/auth.types';
+import { AuthStateContext, AuthDispatchContext } from '@/context/AuthContext';
 
 /**
  * Custom hook for accessing AuthContext
@@ -12,7 +12,7 @@ export function useAuth(): AuthContextType {
   const dispatchContext = useContext(AuthDispatchContext);
 
   if (stateContext === undefined && dispatchContext === undefined)
-    throw new Error("Context is being used outside of the Context provider");
+    throw new Error('Context is being used outside of the Context provider');
   else if (stateContext !== undefined && dispatchContext !== undefined) {
     let { login, logout, signup, clearError } = dispatchContext;
     const res: AuthContextType = {
@@ -24,6 +24,6 @@ export function useAuth(): AuthContextType {
     };
     return res;
   } else {
-    throw new Error("Something went wrong!");
+    throw new Error('Something went wrong!');
   }
 }

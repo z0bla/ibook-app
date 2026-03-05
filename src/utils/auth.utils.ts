@@ -13,23 +13,23 @@ export function validatePassword(password: string): string | null {
   const hasSpecialCharacter = /[!@#$%^&*]/.test(password);
 
   if (password.length < minLength) {
-    return "Password must be at least 8 characters long.";
+    return 'Password must be at least 8 characters long.';
   }
 
   if (!hasLowercase) {
-    return "Password must contain at least one lowercase letter.";
+    return 'Password must contain at least one lowercase letter.';
   }
 
   if (!hasUppercase) {
-    return "Password must contain at least one uppercase letter.";
+    return 'Password must contain at least one uppercase letter.';
   }
 
   if (!hasDigit) {
-    return "Password must contain at least one digit.";
+    return 'Password must contain at least one digit.';
   }
 
   if (!hasSpecialCharacter) {
-    return "Password must contain at least one special characters.";
+    return 'Password must contain at least one special characters.';
   }
 
   return null;

@@ -1,6 +1,6 @@
-import { delay } from "@/utils/auth.utils";
-import { LoginCredentials, SignupCredentials, User } from "@/types/auth.types";
-import users from "@/data/users.json";
+import { delay } from '@/utils/auth.utils';
+import { LoginCredentials, SignupCredentials, User } from '@/types/auth.types';
+import users from '@/data/users.json';
 
 const mockUsers: User[] = users as User[];
 
@@ -14,7 +14,7 @@ export async function loginUser(credentials: LoginCredentials): Promise<User> {
   const user = findUserByEmail(credentials.email);
 
   if (!user || user.password !== credentials.password) {
-    throw new Error("Invalid email or password.");
+    throw new Error('Invalid email or password.');
   }
 
   return user;
@@ -28,7 +28,7 @@ export async function signupUser(
   const existingUser = findUserByEmail(credentials.email);
 
   if (existingUser) {
-    throw new Error("User already exists.");
+    throw new Error('User already exists.');
   }
 
   const newUser: User = {

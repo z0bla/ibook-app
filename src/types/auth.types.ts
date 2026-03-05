@@ -2,13 +2,13 @@
  * User interface represents a registered user in the system
  */
 export interface User {
-  id: string;            // Unique identifier
-  email: string;         // Email address
-  password: string;      // Hashed password
-  name: string;          // Full name
-  phone?: string;        // Optional phone number
-  createdAt: string;     // ISO date of account creation
-  lastLogin?: string;    // Optional ISO date of last login
+  id: string; // Unique identifier
+  email: string; // Email address
+  password: string; // Hashed password
+  name: string; // Full name
+  phone?: string; // Optional phone number
+  createdAt: string; // ISO date of account creation
+  lastLogin?: string; // Optional ISO date of last login
 }
 
 /**
@@ -48,7 +48,7 @@ export type AuthAction =
   | { type: 'SIGNUP'; payload: User }
   | { type: 'SET_ERROR'; payload: string }
   | { type: 'CLEAR_ERROR' }
-  | { type: 'SET_LOADING', payload: boolean }
+  | { type: 'SET_LOADING'; payload: boolean };
 
 /**
  * AuthContextType defines all methods and state exposed by AuthContext
