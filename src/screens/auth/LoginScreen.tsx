@@ -7,6 +7,8 @@ import {
   Pressable,
   ActivityIndicator,
   StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,28 +27,33 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>iBook Login</Text>
-
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <View>
-        <TextInput
-          style={styles.inputField}
-          placeholder="email"
-          value={email}
-          onChangeText={handleEmailChange}
-        />
-        <TextInput
-          style={styles.inputField}
-          placeholder="password"
-          value={password}
-          onChangeText={handlePasswordChange}
-        />
-      </View>
+        <Text style={styles.title}>iBook Login</Text>
 
-      <Pressable>
-        <Text style={styles.button}>Login</Text>
-      </Pressable>
-    </View>
+        <View>
+          <TextInput
+            style={styles.inputField}
+            placeholder="email"
+            value={email}
+            onChangeText={handleEmailChange}
+          />
+          <TextInput
+            style={styles.inputField}
+            placeholder="password"
+            value={password}
+            onChangeText={handlePasswordChange}
+          />
+        </View>
+
+        <Pressable>
+          <Text style={styles.button}>Login</Text>
+        </Pressable>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
