@@ -15,7 +15,7 @@ import { useAuth } from '@/hooks/useAuth';
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>LoginScreen</Text>
+      <Text style={styles.title}>iBook Login</Text>
     </View>
   );
 }
