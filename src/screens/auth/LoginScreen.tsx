@@ -16,6 +16,15 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>iBook Login</Text>
+
+      <View>
+        <TextInput style={styles.inputField} placeholder="email" />
+        <TextInput style={styles.inputField} placeholder="password" />
+      </View>
+
+      <Pressable>
+        <Text style={styles.button}>Login</Text>
+      </Pressable>
     </View>
   );
 }
@@ -30,5 +39,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 20,
+  },
+  inputField: {
+    borderWidth: 1,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#444',
+    color: '#fff',
+    padding: 10,
+    textAlign: 'center',
   },
 });
