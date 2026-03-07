@@ -13,13 +13,34 @@ import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function LoginScreen() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+  };
+
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>iBook Login</Text>
 
       <View>
-        <TextInput style={styles.inputField} placeholder="email" />
-        <TextInput style={styles.inputField} placeholder="password" />
+        <TextInput
+          style={styles.inputField}
+          placeholder="email"
+          value={email}
+          onChangeText={handleEmailChange}
+        />
+        <TextInput
+          style={styles.inputField}
+          placeholder="password"
+          value={password}
+          onChangeText={handlePasswordChange}
+        />
       </View>
 
       <Pressable>
