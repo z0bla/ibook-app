@@ -119,8 +119,16 @@ export default function LoginScreen() {
           {passwordError ? <Text>{passwordError}</Text> : null}
         </View>
 
-        <Pressable onPress={handleLogin} disabled={state.isLoading}>
-          <Text style={styles.button}>Login</Text>
+        <Pressable
+          style={styles.button}
+          onPress={handleLogin}
+          disabled={state.isLoading}
+        >
+          {state.isLoading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.buttonText}>Log in</Text>
+          )}
         </Pressable>
       </View>
     </KeyboardAvoidingView>
@@ -144,8 +152,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#444',
-    color: '#fff',
     padding: 10,
+  },
+  buttonText: {
+    color: '#fff',
     textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });
