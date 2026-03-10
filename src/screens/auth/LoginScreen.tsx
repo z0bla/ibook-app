@@ -119,7 +119,7 @@ export default function LoginScreen() {
           {passwordError ? <Text>{passwordError}</Text> : null}
         </View>
 
-        <Pressable onPress={handleLogin}>
+        <Pressable onPress={handleLogin} disabled={state.isLoading}>
           <Text style={styles.button}>Login</Text>
         </Pressable>
       </View>
