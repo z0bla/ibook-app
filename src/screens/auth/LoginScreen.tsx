@@ -20,6 +20,7 @@ export default function LoginScreen() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (state.isAuthenticated) {
@@ -37,6 +38,10 @@ export default function LoginScreen() {
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
+  };
+
+  const handleShowPasswordChange = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleLogin = () => {
@@ -64,7 +69,12 @@ export default function LoginScreen() {
             placeholder="password"
             value={password}
             onChangeText={handlePasswordChange}
+            secureTextEntry={!showPassword}
           />
+          <Button
+            onPress={handleShowPasswordChange}
+            title="show/hide password"
+          ></Button>
         </View>
 
         <Pressable onPress={handleLogin}>
