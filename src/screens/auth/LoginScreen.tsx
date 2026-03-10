@@ -28,7 +28,7 @@ export default function LoginScreen() {
     if (state.isAuthenticated) {
       navigation.reset({
         index: 0,
-        routes: [{ name: 'App' }],
+        routes: [{ name: 'App' } as never],
       });
     }
   }, [state.isAuthenticated, navigation]);
