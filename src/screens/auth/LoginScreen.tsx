@@ -87,6 +87,10 @@ export default function LoginScreen() {
     }
   };
 
+  const handleSignup = () => {
+    navigation.navigate('Signup' as never);
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -129,6 +133,12 @@ export default function LoginScreen() {
           ) : (
             <Text style={styles.buttonText}>Log in</Text>
           )}
+        </Pressable>
+
+        <Pressable style={styles.button} onPress={handleSignup}>
+          <Text style={styles.buttonText}>
+            Don&apos;t have an account? Sign up
+          </Text>
         </Pressable>
       </View>
     </KeyboardAvoidingView>
