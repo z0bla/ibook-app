@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   View,
   TextInput,
@@ -15,15 +15,33 @@ import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function LoginScreen() {
+  const { state, login } = useAuth();
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    if (state.isAuthenticated) {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'App' }],
+      });
+    }
+  }, [state.isAuthenticated, navigation]);
+
   const handleEmailChange = (text: string) => {
     setEmail(text);
+    console.log('email updated');
   };
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
+  };
+
+  const handleLogin = () => {
+    console.log('handleLogin() called:', email, password);
+    login({ email, password });
   };
 
   return (
@@ -49,7 +67,7 @@ export default function LoginScreen() {
           />
         </View>
 
-        <Pressable>
+        <Pressable onPress={handleLogin}>
           <Text style={styles.button}>Login</Text>
         </Pressable>
       </View>
