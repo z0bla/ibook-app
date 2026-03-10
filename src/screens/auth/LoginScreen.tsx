@@ -128,10 +128,13 @@ export default function LoginScreen() {
             onChangeText={handlePasswordChange}
             secureTextEntry={!showPassword}
           />
-          <Button
-            onPress={handleShowPasswordChange}
-            title="show/hide password"
-          ></Button>
+          <Pressable onPress={handleShowPasswordChange}>
+            {showPassword ? (
+              <Text>Hide password</Text>
+            ) : (
+              <Text>Show password</Text>
+            )}
+          </Pressable>
           {passwordError ? <Text>{passwordError}</Text> : null}
           <Pressable onPress={handleForgotPassword}>
             <Text>Forgot password?</Text>
