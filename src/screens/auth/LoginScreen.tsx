@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput, Button, Text } from 'react-native-paper';
 
@@ -141,13 +135,10 @@ export default function LoginScreen() {
         <Button
           style={styles.button}
           onPress={handleLogin}
+          loading={state.isLoading}
           disabled={state.isLoading}
         >
-          {state.isLoading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <Text style={styles.buttonText}>Log in</Text>
-          )}
+          Log in
         </Button>
 
         <Button style={styles.button} onPress={handleSignup}>
