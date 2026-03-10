@@ -78,6 +78,10 @@ export default function LoginScreen() {
     setShowPassword(!showPassword);
   };
 
+  const handleForgotPassword = () => {
+    console.log('handleForgotPassword()');
+  };
+
   const handleLogin = () => {
     const isEmailValid = validateEmail();
     const isPasswordValid = validatePassword();
@@ -121,6 +125,9 @@ export default function LoginScreen() {
             title="show/hide password"
           ></Button>
           {passwordError ? <Text>{passwordError}</Text> : null}
+          <Pressable onPress={handleForgotPassword}>
+            <Text>Forgot password?</Text>
+          </Pressable>
         </View>
 
         <Pressable
