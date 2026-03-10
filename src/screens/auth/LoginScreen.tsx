@@ -124,9 +124,7 @@ export default function LoginScreen() {
             }
           />
           {passwordError ? <Text>{passwordError}</Text> : null}
-          <Button onPress={handleForgotPassword}>
-            <Text>Forgot password?</Text>
-          </Button>
+          <Button onPress={handleForgotPassword}>Forgot password?</Button>
         </View>
 
         <Button
