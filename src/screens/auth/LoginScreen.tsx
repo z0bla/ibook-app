@@ -73,7 +73,7 @@ export default function LoginScreen() {
     }
   };
 
-  const handleShowPasswordChange = () => {
+  const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
@@ -116,14 +116,13 @@ export default function LoginScreen() {
             value={password}
             onChangeText={handlePasswordChange}
             secureTextEntry={!showPassword}
+            right={
+              <TextInput.Icon
+                icon={showPassword ? 'eye-off' : 'eye'}
+                onPress={togglePasswordVisibility}
+              />
+            }
           />
-          <Button mode="text" onPress={handleShowPasswordChange}>
-            {showPassword ? (
-              <Text>Hide password</Text>
-            ) : (
-              <Text>Show password</Text>
-            )}
-          </Button>
           {passwordError ? <Text>{passwordError}</Text> : null}
           <Button onPress={handleForgotPassword}>
             <Text>Forgot password?</Text>
