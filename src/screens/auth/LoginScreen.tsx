@@ -22,6 +22,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
     if (state.isAuthenticated) {
@@ -47,6 +48,16 @@ export default function LoginScreen() {
     return true;
   };
 
+  const validatePassword = () => {
+    if (!password) {
+      setPasswordError('Password is required');
+      return false;
+    }
+
+    setPasswordError('');
+    return true;
+  };
+
   const handleEmailChange = (text: string) => {
     setEmail(text);
     console.log('email updated');
@@ -57,6 +68,10 @@ export default function LoginScreen() {
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
+
+    if (passwordError) {
+      setPasswordError('');
+    }
   };
 
   const handleShowPasswordChange = () => {
@@ -65,8 +80,9 @@ export default function LoginScreen() {
 
   const handleLogin = () => {
     const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
 
-    if (isEmailValid) {
+    if (isEmailValid && isPasswordValid) {
       login({ email, password });
     }
   };
@@ -98,6 +114,7 @@ export default function LoginScreen() {
             onPress={handleShowPasswordChange}
             title="show/hide password"
           ></Button>
+          {passwordError ? <Text>{passwordError}</Text> : null}
         </View>
 
         <Pressable onPress={handleLogin}>
