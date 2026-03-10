@@ -15,12 +15,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function LoginScreen() {
-  const { state, login } = useAuth();
+  const { state, login, clearError } = useAuth();
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   useEffect(() => {
     if (state.isAuthenticated) {
@@ -31,9 +32,27 @@ export default function LoginScreen() {
     }
   }, [state.isAuthenticated, navigation]);
 
+  const validateEmail = () => {
+    if (!email) {
+      setEmailError('Email is required');
+      return false;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError('Invalid email format');
+      return false;
+    }
+
+    setEmailError('');
+    return true;
+  };
+
   const handleEmailChange = (text: string) => {
     setEmail(text);
     console.log('email updated');
+    if (emailError) {
+      setEmailError('');
+    }
   };
 
   const handlePasswordChange = (text: string) => {
@@ -45,8 +64,11 @@ export default function LoginScreen() {
   };
 
   const handleLogin = () => {
-    console.log('handleLogin() called:', email, password);
-    login({ email, password });
+    const isEmailValid = validateEmail();
+
+    if (isEmailValid) {
+      login({ email, password });
+    }
   };
 
   return (
@@ -64,6 +86,7 @@ export default function LoginScreen() {
             value={email}
             onChangeText={handleEmailChange}
           />
+          {emailError ? <Text>{emailError}</Text> : null}
           <TextInput
             style={styles.inputField}
             placeholder="password"
