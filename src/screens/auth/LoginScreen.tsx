@@ -60,7 +60,11 @@ export default function LoginScreen() {
 
   const handleEmailChange = (text: string) => {
     setEmail(text);
-    console.log('email updated');
+
+    if (state.error) {
+      clearError();
+    }
+
     if (emailError) {
       setEmailError('');
     }
@@ -68,6 +72,10 @@ export default function LoginScreen() {
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
+
+    if (state.error) {
+      clearError();
+    }
 
     if (passwordError) {
       setPasswordError('');
