@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 import {
   View,
-  TextInput,
-  Button,
-  Text,
-  Pressable,
   ActivityIndicator,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { TextInput, Button, Text } from 'react-native-paper';
 
 import { useAuth } from '@/hooks/useAuth';
 
@@ -128,20 +125,20 @@ export default function LoginScreen() {
             onChangeText={handlePasswordChange}
             secureTextEntry={!showPassword}
           />
-          <Pressable onPress={handleShowPasswordChange}>
+          <Button onPress={handleShowPasswordChange}>
             {showPassword ? (
               <Text>Hide password</Text>
             ) : (
               <Text>Show password</Text>
             )}
-          </Pressable>
+          </Button>
           {passwordError ? <Text>{passwordError}</Text> : null}
-          <Pressable onPress={handleForgotPassword}>
+          <Button onPress={handleForgotPassword}>
             <Text>Forgot password?</Text>
-          </Pressable>
+          </Button>
         </View>
 
-        <Pressable
+        <Button
           style={styles.button}
           onPress={handleLogin}
           disabled={state.isLoading}
@@ -151,13 +148,13 @@ export default function LoginScreen() {
           ) : (
             <Text style={styles.buttonText}>Log in</Text>
           )}
-        </Pressable>
+        </Button>
 
-        <Pressable style={styles.button} onPress={handleSignup}>
+        <Button style={styles.button} onPress={handleSignup}>
           <Text style={styles.buttonText}>
             Don&apos;t have an account? Sign up
           </Text>
-        </Pressable>
+        </Button>
       </View>
     </KeyboardAvoidingView>
   );
