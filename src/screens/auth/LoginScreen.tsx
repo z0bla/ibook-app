@@ -106,20 +106,18 @@ export default function LoginScreen() {
 
         <View>
           <TextInput
-            style={styles.inputField}
             placeholder="email"
             value={email}
             onChangeText={handleEmailChange}
           />
           {emailError ? <Text>{emailError}</Text> : null}
           <TextInput
-            style={styles.inputField}
             placeholder="password"
             value={password}
             onChangeText={handlePasswordChange}
             secureTextEntry={!showPassword}
           />
-          <Button onPress={handleShowPasswordChange}>
+          <Button mode="text" onPress={handleShowPasswordChange}>
             {showPassword ? (
               <Text>Hide password</Text>
             ) : (
@@ -133,7 +131,7 @@ export default function LoginScreen() {
         </View>
 
         <Button
-          style={styles.button}
+          mode="contained"
           onPress={handleLogin}
           loading={state.isLoading}
           disabled={state.isLoading}
@@ -141,10 +139,8 @@ export default function LoginScreen() {
           Log in
         </Button>
 
-        <Button style={styles.button} onPress={handleSignup}>
-          <Text style={styles.buttonText}>
-            Don&apos;t have an account? Sign up
-          </Text>
+        <Button mode="outlined" onPress={handleSignup}>
+          Don&apos;t have an account? Sign up
         </Button>
       </View>
     </KeyboardAvoidingView>
@@ -161,18 +157,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 20,
-  },
-  inputField: {
-    borderWidth: 1,
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: '#444',
-    padding: 10,
-  },
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-    textTransform: 'uppercase',
   },
 });
