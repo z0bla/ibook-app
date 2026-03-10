@@ -95,6 +95,8 @@ export default function LoginScreen() {
       <View>
         <Text style={styles.title}>iBook Login</Text>
 
+        {state.error && <Text>{state.error}</Text>}
+
         <View>
           <TextInput
             style={styles.inputField}
