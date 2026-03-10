@@ -109,6 +109,7 @@ export default function LoginScreen() {
             placeholder="email"
             value={email}
             onChangeText={handleEmailChange}
+            onBlur={validateEmail}
           />
           {emailError ? <Text>{emailError}</Text> : null}
           <TextInput
