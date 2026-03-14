@@ -106,17 +106,22 @@ export default function LoginScreen() {
 
         <View>
           <TextInput
-            placeholder="email"
+            label="Email"
             value={email}
             onChangeText={handleEmailChange}
             onBlur={validateEmail}
+            keyboardType="email-address"
+            error={!!emailError}
+            mode="outlined"
           />
           {emailError ? <Text>{emailError}</Text> : null}
           <TextInput
-            placeholder="password"
+            label="Password"
             value={password}
             onChangeText={handlePasswordChange}
             secureTextEntry={!showPassword}
+            error={!!passwordError}
+            mode="outlined"
             right={
               <TextInput.Icon
                 icon={showPassword ? 'eye-off' : 'eye'}
