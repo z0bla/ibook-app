@@ -102,7 +102,7 @@ export default function LoginScreen() {
       <View>
         <Text style={styles.title}>iBook Login</Text>
 
-        {state.error && <Text>{state.error}</Text>}
+        {state.error && <Text style={styles.errorMessage}>{state.error}</Text>}
 
         <View>
           <TextInput
@@ -114,7 +114,9 @@ export default function LoginScreen() {
             error={!!emailError}
             mode="outlined"
           />
-          {emailError ? <Text>{emailError}</Text> : null}
+          {emailError ? (
+            <Text style={styles.errorMessage}>{emailError}</Text>
+          ) : null}
           <TextInput
             label="Password"
             value={password}
@@ -129,7 +131,9 @@ export default function LoginScreen() {
               />
             }
           />
-          {passwordError ? <Text>{passwordError}</Text> : null}
+          {passwordError ? (
+            <Text style={styles.errorMessage}>{passwordError}</Text>
+          ) : null}
           <Button mode="text" onPress={handleForgotPassword}>
             Forgot password?
           </Button>
@@ -162,5 +166,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 20,
+  },
+  errorMessage: {
+    color: '#c62828',
+    marginBottom: 12,
+    marginTop: 4,
   },
 });
