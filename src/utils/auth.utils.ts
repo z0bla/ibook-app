@@ -6,11 +6,11 @@ export function delay(ms: number): Promise<void> {
 }
 
 export function validatePassword(password: string): string | null {
-  const minLength = 8;
+  const minLength = 6;
   const hasLowercase = /[a-z]/.test(password);
   const hasUppercase = /[A-Z]/.test(password);
   const hasDigit = /\d/.test(password);
-  const hasSpecialCharacter = /[!@#$%^&*]/.test(password);
+  const hasSpecialCharacter = /[^A-Za-z0-9]+/.test(password);
 
   if (password.length < minLength) {
     return 'Password must be at least 8 characters long.';
