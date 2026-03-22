@@ -1,5 +1,6 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
+/**Type representing a Category */
 export interface Category {
   id: string; //unique identifier for a category
   name: string; //name of the category
@@ -7,6 +8,7 @@ export interface Category {
   description: string; //category description
 }
 
+/**Type representing a Salon */
 export interface Salon {
   id: string; //unique identifier for a salon
   categoryId: string; //unique identifier for a category
@@ -20,6 +22,7 @@ export interface Salon {
   operatingHours: WorkDay[]; //salon's open hours as an array of opening hours for each day of the week
 }
 
+/**Type representing a Service */
 export interface Service {
   id: string; //unique identifier for the service
   salonId: string; //unique identifier for a salon
