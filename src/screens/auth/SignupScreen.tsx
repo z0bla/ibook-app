@@ -5,6 +5,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { Button, TextInput, Text, ProgressBar } from 'react-native-paper';
 
+/**
+ * A component for creating a new user
+ *
+ * @returns {JSX.Element}
+ */
 export default function SignupScreen() {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [name, setName] = useState('');
@@ -20,7 +25,7 @@ export default function SignupScreen() {
 
   const { state, signup, clearError } = useAuth();
   const navigation = useNavigation();
-
+  //Making sure that error gets cleared when screens switch
   useFocusEffect(
     useCallback(() => {
       return () => {
@@ -28,7 +33,7 @@ export default function SignupScreen() {
       };
     }, []),
   );
-
+  //Password validation
   function validatePassword(pass: string): void {
     let progress = 0.1;
     const reg1 = /\d+/;
@@ -38,6 +43,7 @@ export default function SignupScreen() {
     if (reg2.test(pass)) progress += 0.3;
     setProgress(progress);
   }
+  //Changing colors on progress bar
   function pickColor(progress: number): string {
     switch (progress) {
       case 0.1:
@@ -56,6 +62,7 @@ export default function SignupScreen() {
         return 'black';
     }
   }
+  //Signup handler
   function handleSignup() {
     if (
       !nameError &&
@@ -158,10 +165,7 @@ export default function SignupScreen() {
           />
         }
       />
-      <Text>
-        {password != confirmPassword &&
-          'Confirm password must match with password!'}
-      </Text>
+      <Text>{password != confirmPassword && 'Both passwords must match!'}</Text>
       <Button
         mode="contained"
         onPress={handleSignup}
