@@ -98,7 +98,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function signup(credentials: SignupCredentials) {
     const { email, password, name } = credentials;
-
     // Check if required fields are filled
     if (!email || !password || !name) {
       dispatch({
@@ -107,13 +106,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       return;
     }
-
     const passwordError = validatePassword(password);
     if (passwordError) {
       dispatch({ type: 'SET_ERROR', payload: passwordError });
       return;
     }
-
     dispatch({ type: 'CLEAR_ERROR' });
     dispatch({ type: 'SET_LOADING', payload: true });
 
@@ -122,6 +119,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     try {
       const user = await signupUser(credentials);
+
       dispatch({ type: 'SIGNUP', payload: user });
     } catch (error) {
       dispatch({
