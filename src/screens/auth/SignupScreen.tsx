@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks';
-import { SignupCredentials, User } from '@/types/auth.types';
+import { SignupCredentials } from '@/types/auth.types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { Button, TextInput, Text, ProgressBar } from 'react-native-paper';
 

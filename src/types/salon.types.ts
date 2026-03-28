@@ -19,7 +19,7 @@ export interface Salon {
   rating: number; //salon's rating
   reviewCount: number; //number of reviews
   image: string; //URL to an image
-  operatingHours: WorkDay[]; //salon's open hours as an array of opening hours for each day of the week
+  operatingHours: string; //salon's open hours as an array of opening hours for each day of the week
 }
 
 /**Type representing a Service */
@@ -29,11 +29,4 @@ export interface Service {
   name: string; //name or description of the service
   duration: number; //duration of the service
   price: number; //price for the service
-}
-
-//type for opening hours in one day
-export interface WorkDay {
-  day: string; //day of the week
-  start: string; //opening hours
-  end: string; //closing hours
 }
