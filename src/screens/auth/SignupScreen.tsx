@@ -1,7 +1,13 @@
 import { useAuth } from '@/hooks';
+<<<<<<< HEAD
 import { SignupCredentials } from '@/types/auth.types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
+=======
+import { SignupCredentials, User } from '@/types/auth.types';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useCallback, useEffect, useState } from 'react';
+>>>>>>> 11b18f820f2e14dd94fba53058db322b5e6e18ca
 import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { Button, TextInput, Text, ProgressBar } from 'react-native-paper';
 
