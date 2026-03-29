@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { TextInput, Button, Text } from 'react-native-paper';
 
 import { useAuth } from '@/hooks/useAuth';
@@ -14,6 +14,14 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        clearError();
+      };
+    }, []),
+  );
 
   useEffect(() => {
     if (state.isAuthenticated) {
