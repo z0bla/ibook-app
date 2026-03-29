@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listItem: {
-    height: '100%',
-    width: '50%',
+    height: '90%',
+    width: '48%',
+    margin: '1%',
   },
 });
