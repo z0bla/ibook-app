@@ -1,6 +1,6 @@
 import { useAuth } from '@/hooks';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
-import { Avatar, Button, Card, Text } from 'react-native-paper';
+import { Avatar, Badge, Button, Card, Text } from 'react-native-paper';
 
 export default function ProfileScreen() {
   const {
@@ -58,6 +58,7 @@ export default function ProfileScreen() {
         <Button mode="outlined" onPress={handleViewAppointments}>
           View Appointments
         </Button>
+        <Badge style={{ position: 'absolute', top: 65, right: 15 }}>0</Badge>
 
         <Button mode="contained" onPress={handleLogout}>
           Logout
