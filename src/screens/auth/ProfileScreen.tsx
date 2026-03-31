@@ -33,18 +33,18 @@ export default function ProfileScreen() {
         <Avatar.Text size={100} label={user?.name.charAt(0).toUpperCase()} />
       </View>
 
-      <Card>
+      <Card style={styles.userInfoContainer}>
         <Card.Content>
-          <Text>Name:</Text>
-          <Text>{user.name}</Text>
+          <Text style={{ ...styles.label, marginTop: 0 }}>Name:</Text>
+          <Text style={styles.value}>{user.name}</Text>
 
-          <Text>Email:</Text>
-          <Text>{user.email}</Text>
+          <Text style={styles.label}>Email:</Text>
+          <Text style={styles.value}>{user.email}</Text>
 
           {user.phone && (
             <>
-              <Text>Phone</Text>
-              <Text>{user.phone}</Text>
+              <Text style={styles.label}>Phone:</Text>
+              <Text style={styles.value}>{user.phone}</Text>
             </>
           )}
         </Card.Content>
@@ -75,5 +75,16 @@ const styles = StyleSheet.create({
   avatarContainer: {
     alignItems: 'center',
     marginBottom: 20,
+  },
+  userInfoContainer: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 12,
+    marginBottom: 4,
+    marginTop: 12,
+  },
+  value: {
+    fontSize: 16,
   },
 });
