@@ -1,6 +1,6 @@
 import { useAuth } from '@/hooks';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Avatar, Card, Text } from 'react-native-paper';
+import { Alert, ScrollView, StyleSheet, View } from 'react-native';
+import { Avatar, Button, Card, Text } from 'react-native-paper';
 
 export default function ProfileScreen() {
   const {
@@ -10,6 +10,10 @@ export default function ProfileScreen() {
   if (!user) {
     return <View style={styles.container}>User not found</View>;
   }
+
+  const handleEditProfile = () => {
+    Alert.alert('Edit Profile', 'Edit profile not yet available');
+  };
 
   return (
     <ScrollView>
@@ -33,6 +37,12 @@ export default function ProfileScreen() {
           )}
         </Card.Content>
       </Card>
+
+      <View>
+        <Button mode="outlined" onPress={handleEditProfile}>
+          Edit Profile
+        </Button>
+      </View>
     </ScrollView>
   );
 }
