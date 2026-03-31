@@ -15,7 +15,7 @@ export default function CategoriesScreen() {
       renderItem={({ item }) => (
         <Card
           onPress={() => {
-            Alert.alert('Navigation not ready');
+            navigation.navigate('Salons', { categoryId: item.id });
           }}
           style={styles.listItem}
         >
