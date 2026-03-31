@@ -1,6 +1,6 @@
 import { useAuth } from '@/hooks';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Avatar } from 'react-native-paper';
+import { Avatar, Card, Text } from 'react-native-paper';
 
 export default function ProfileScreen() {
   const {
@@ -16,6 +16,23 @@ export default function ProfileScreen() {
       <View>
         <Avatar.Text size={100} label={user?.name.charAt(0).toUpperCase()} />
       </View>
+
+      <Card>
+        <Card.Content>
+          <Text>Name:</Text>
+          <Text>{user.name}</Text>
+
+          <Text>Email:</Text>
+          <Text>{user.email}</Text>
+
+          {user.phone && (
+            <>
+              <Text>Phone</Text>
+              <Text>{user.phone}</Text>
+            </>
+          )}
+        </Card.Content>
+      </Card>
     </ScrollView>
   );
 }
