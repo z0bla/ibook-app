@@ -1,5 +1,7 @@
 # ibook
 
+![CI](https://github.com/z0bla/ibook-app/actions/workflows/ci.yml/badge.svg)
+
 A React Native mobile application built with Expo.
 
 ## Tech Stack

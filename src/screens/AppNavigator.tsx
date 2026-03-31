@@ -1,22 +1,13 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { RootStackParamList } from '@/navigation/types';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProfileScreen from './auth/ProfileScreen';
 
-import { useAuth } from '@/hooks/useAuth';
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  const { state } = useAuth();
-
   return (
-    <View style={styles.container}>
-      <Text>Main App</Text>
-      {state.user && <Text>Welcome, {state.user.name}!</Text>}
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
