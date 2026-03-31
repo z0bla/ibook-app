@@ -5,6 +5,7 @@ import { Avatar, Button, Card, Text } from 'react-native-paper';
 export default function ProfileScreen() {
   const {
     state: { user },
+    logout,
   } = useAuth();
 
   if (!user) {
@@ -17,6 +18,13 @@ export default function ProfileScreen() {
 
   const handleViewAppointments = () => {
     Alert.alert('View Appointments', 'View appointments not yet available');
+  };
+
+  const handleLogout = () => {
+    Alert.alert('Logout', 'Are you sure you want to logout?', [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Logout', style: 'destructive', onPress: () => logout() },
+    ]);
   };
 
   return (
@@ -49,6 +57,10 @@ export default function ProfileScreen() {
 
         <Button mode="outlined" onPress={handleViewAppointments}>
           View Appointments
+        </Button>
+
+        <Button mode="contained" onPress={handleLogout}>
+          Logout
         </Button>
       </View>
     </ScrollView>
