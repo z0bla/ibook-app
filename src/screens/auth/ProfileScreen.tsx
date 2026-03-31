@@ -50,7 +50,7 @@ export default function ProfileScreen() {
         </Card.Content>
       </Card>
 
-      <View>
+      <View style={styles.buttonContainer}>
         <Button mode="outlined" onPress={handleEditProfile}>
           Edit Profile
         </Button>
@@ -86,5 +86,8 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 16,
+  },
+  buttonContainer: {
+    gap: 10,
   },
 });
