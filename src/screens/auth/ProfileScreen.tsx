@@ -1,5 +1,6 @@
 import { useAuth } from '@/hooks';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Avatar } from 'react-native-paper';
 
 export default function ProfileScreen() {
   const {
@@ -9,6 +10,14 @@ export default function ProfileScreen() {
   if (!user) {
     return <View style={styles.container}>User not found</View>;
   }
+
+  return (
+    <ScrollView style={styles.container}>
+      <View>
+        <Avatar.Text size={100} label={user?.name.charAt(0).toUpperCase()} />
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
