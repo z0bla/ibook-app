@@ -6,4 +6,5 @@ export type AuthStackParamList = {
 export type RootStackParamList = {
   Auth: undefined;
   App: undefined;
+  Profile: undefined;
 };
