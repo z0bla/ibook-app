@@ -15,6 +15,10 @@ export default function ProfileScreen() {
     Alert.alert('Edit Profile', 'Edit profile not yet available');
   };
 
+  const handleViewAppointments = () => {
+    Alert.alert('View Appointments', 'View appointments not yet available');
+  };
+
   return (
     <ScrollView>
       <View>
@@ -41,6 +45,10 @@ export default function ProfileScreen() {
       <View>
         <Button mode="outlined" onPress={handleEditProfile}>
           Edit Profile
+        </Button>
+
+        <Button mode="outlined" onPress={handleViewAppointments}>
+          View Appointments
         </Button>
       </View>
     </ScrollView>
