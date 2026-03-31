@@ -12,7 +12,7 @@ export default function ProfileScreen() {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <View>
         <Avatar.Text size={100} label={user?.name.charAt(0).toUpperCase()} />
       </View>
