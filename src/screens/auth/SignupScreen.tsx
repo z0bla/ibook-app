@@ -23,12 +23,11 @@ export default function SignupScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmVisibility, setConfirmVisibility] = useState(false);
 
-  const { state, signup } = useAuth();
+  const { state, signup, clearError } = useAuth();
   const navigation = useNavigation();
   //Making sure that error gets cleared when screens switch
   useFocusEffect(
     useCallback(() => {
-      const { clearError } = useAuth();
       return () => {
         clearError();
       };

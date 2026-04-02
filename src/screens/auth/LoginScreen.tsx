@@ -17,7 +17,6 @@ export default function LoginScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      const { clearError } = useAuth();
       return () => {
         clearError();
       };
