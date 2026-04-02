@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks';
-import { SignupCredentials, User } from '@/types/auth.types';
+import { SignupCredentials } from '@/types/auth.types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { Button, TextInput, Text, ProgressBar } from 'react-native-paper';
 
@@ -23,11 +23,12 @@ export default function SignupScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmVisibility, setConfirmVisibility] = useState(false);
 
-  const { state, signup, clearError } = useAuth();
+  const { state, signup } = useAuth();
   const navigation = useNavigation();
   //Making sure that error gets cleared when screens switch
   useFocusEffect(
     useCallback(() => {
+      const { clearError } = useAuth();
       return () => {
         clearError();
       };
@@ -48,16 +49,12 @@ export default function SignupScreen() {
     switch (progress) {
       case 0.1:
         return 'red';
-        break;
       case 0.4:
         return 'orange';
-        break;
       case 0.7:
         return 'yellow';
-        break;
       case 1:
         return 'green';
-        break;
       default:
         return 'black';
     }
@@ -88,7 +85,7 @@ export default function SignupScreen() {
         onChangeText={(text) => setName(text)}
         mode="outlined"
         onBlur={() => {
-          name.length > 2 || name.length > 15
+          name.length < 3 || name.length > 15
             ? setNameError(false)
             : setNameError(true);
         }}
@@ -116,8 +113,9 @@ export default function SignupScreen() {
         onChangeText={(text) => setPhone(text)}
         mode="outlined"
         onBlur={() => {
-          let regex = /^\d{3}\/?\d{3}\-?\d{3,4}$/;
-          regex.test(phone) ? setPhoneError(false) : setPhoneError(true);
+          /^\d{3}\/?\d{3}\-?\d{3,4}$/.test(phone)
+            ? setPhoneError(false)
+            : setPhoneError(true);
         }}
         outlineColor={phoneError ? 'red' : 'gray'}
       />
@@ -155,7 +153,7 @@ export default function SignupScreen() {
           setConfirmPassword(text);
         }}
         mode="outlined"
-        outlineColor={password != confirmPassword ? 'red' : 'gray'}
+        outlineColor={password !== confirmPassword ? 'red' : 'gray'}
         right={
           <TextInput.Icon
             icon={confirmVisibility ? 'eye-off' : 'eye'}
@@ -165,7 +163,9 @@ export default function SignupScreen() {
           />
         }
       />
-      <Text>{password != confirmPassword && 'Both passwords must match!'}</Text>
+      <Text>
+        {password !== confirmPassword && 'Both passwords must match!'}
+      </Text>
       <Button
         mode="contained"
         onPress={handleSignup}
