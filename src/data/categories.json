@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "Hair Salons",
+    "icon": "numeric-1",
+    "description": "Everything about hair"
+  },
+  {
+    "id": "2",
+    "name": "Nail Salons",
+    "icon": "numeric-2",
+    "description": "Everything about nails"
+  },
+  {
+    "id": "3",
+    "name": "Eyebrow Salons",
+    "icon": "numeric-3",
+    "description": "Everything about eyebrows"
+  }
+]
