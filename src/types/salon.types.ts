@@ -30,4 +30,3 @@ export interface Service {
   duration: number; //duration of the service
   price: number; //price for the service
 }
-
