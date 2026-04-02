@@ -1,0 +1,373 @@
+[
+  {
+    "id": "1",
+    "salonId": "1",
+    "name": "manicure",
+    "duration": 40,
+    "price": 50
+  },
+  {
+    "id": "2",
+    "salonId": "1",
+    "name": "pedicure",
+    "duration": 50,
+    "price": 65
+  },
+  {
+    "id": "3",
+    "salonId": "1",
+    "name": "nail repair",
+    "duration": 35,
+    "price": 46
+  },
+  {
+    "id": "4",
+    "salonId": "1",
+    "name": "nail art",
+    "duration": 45,
+    "price": 60
+  },
+  {
+    "id": "5",
+    "salonId": "2",
+    "name": "manicure",
+    "duration": 40,
+    "price": 55
+  },
+  {
+    "id": "6",
+    "salonId": "2",
+    "name": "pedicure",
+    "duration": 50,
+    "price": 70
+  },
+  {
+    "id": "7",
+    "salonId": "2",
+    "name": "nail repair",
+    "duration": 35,
+    "price": 55
+  },
+  {
+    "id": "8",
+    "salonId": "2",
+    "name": "nail art",
+    "duration": 45,
+    "price": 70
+  },
+  {
+    "id": "9",
+    "salonId": "3",
+    "name": "manicure",
+    "duration": 45,
+    "price": 60
+  },
+  {
+    "id": "10",
+    "salonId": "3",
+    "name": "pedicure",
+    "duration": 60,
+    "price": 70
+  },
+  {
+    "id": "11",
+    "salonId": "3",
+    "name": "nail repair",
+    "duration": 45,
+    "price": 60
+  },
+  {
+    "id": "12",
+    "salonId": "3",
+    "name": "nail art",
+    "duration": 50,
+    "price": 80
+  },
+  {
+    "id": "13",
+    "salonId": "4",
+    "name": "standard haircut",
+    "duration": 20,
+    "price": 15
+  },
+  {
+    "id": "14",
+    "salonId": "4",
+    "name": "modern haircut",
+    "duration": 30,
+    "price": 30
+  },
+  {
+    "id": "15",
+    "salonId": "4",
+    "name": "hair coloring",
+    "duration": 40,
+    "price": 45
+  },
+  {
+    "id": "16",
+    "salonId": "4",
+    "name": "hair styling",
+    "duration": 30,
+    "price": 60
+  },
+  {
+    "id": "17",
+    "salonId": "5",
+    "name": "manicure",
+    "duration": 40,
+    "price": 45
+  },
+  {
+    "id": "18",
+    "salonId": "5",
+    "name": "pedicure",
+    "duration": 50,
+    "price": 53
+  },
+  {
+    "id": "19",
+    "salonId": "5",
+    "name": "nail repair",
+    "duration": 30,
+    "price": 35
+  },
+  {
+    "id": "20",
+    "salonId": "5",
+    "name": "nail art",
+    "duration": 45,
+    "price": 47
+  },
+  {
+    "id": "21",
+    "salonId": "6",
+    "name": "manicure",
+    "duration": 60,
+    "price": 57
+  },
+  {
+    "id": "22",
+    "salonId": "6",
+    "name": "pedicure",
+    "duration": 50,
+    "price": 62
+  },
+  {
+    "id": "23",
+    "salonId": "6",
+    "name": "nail repair",
+    "duration": 40,
+    "price": 51
+  },
+  {
+    "id": "24",
+    "salonId": "6",
+    "name": "nail art",
+    "duration": 45,
+    "price": 64
+  },
+  {
+    "id": "25",
+    "salonId": "7",
+    "name": "threading",
+    "duration": 35,
+    "price": 30
+  },
+  {
+    "id": "26",
+    "salonId": "7",
+    "name": "extensions",
+    "duration": 40,
+    "price": 35
+  },
+  {
+    "id": "27",
+    "salonId": "7",
+    "name": "lamination",
+    "duration": 25,
+    "price": 20
+  },
+  {
+    "id": "28",
+    "salonId": "8",
+    "name": "threading",
+    "duration": 35,
+    "price": 40
+  },
+  {
+    "id": "29",
+    "salonId": "8",
+    "name": "extensions",
+    "duration": 40,
+    "price": 43
+  },
+  {
+    "id": "30",
+    "salonId": "8",
+    "name": "lamination",
+    "duration": 25,
+    "price": 30
+  },
+  {
+    "id": "31",
+    "salonId": "9",
+    "name": "manicure",
+    "duration": 60,
+    "price": 54
+  },
+  {
+    "id": "32",
+    "salonId": "9",
+    "name": "pedicure",
+    "duration": 50,
+    "price": 57
+  },
+  {
+    "id": "33",
+    "salonId": "9",
+    "name": "nail repair",
+    "duration": 40,
+    "price": 43
+  },
+  {
+    "id": "34",
+    "salonId": "10",
+    "name": "manicure",
+    "duration": 60,
+    "price": 55
+  },
+  {
+    "id": "35",
+    "salonId": "10",
+    "name": "pedicure",
+    "duration": 50,
+    "price": 61
+  },
+  {
+    "id": "36",
+    "salonId": "10",
+    "name": "nail repair",
+    "duration": 40,
+    "price": 53
+  },
+  {
+    "id": "37",
+    "salonId": "11",
+    "name": "standard haircut",
+    "duration": 20,
+    "price": 18
+  },
+  {
+    "id": "38",
+    "salonId": "11",
+    "name": "modern haircut",
+    "duration": 30,
+    "price": 34
+  },
+  {
+    "id": "39",
+    "salonId": "11",
+    "name": "hair coloring",
+    "duration": 40,
+    "price": 47
+  },
+  {
+    "id": "40",
+    "salonId": "11",
+    "name": "hair styling",
+    "duration": 30,
+    "price": 55
+  },
+  {
+    "id": "41",
+    "salonId": "12",
+    "name": "threading",
+    "duration": 35,
+    "price": 38
+  },
+  {
+    "id": "42",
+    "salonId": "12",
+    "name": "extensions",
+    "duration": 40,
+    "price": 47
+  },
+  {
+    "id": "43",
+    "salonId": "12",
+    "name": "lamination",
+    "duration": 25,
+    "price": 34
+  },
+  {
+    "id": "44",
+    "salonId": "13",
+    "name": "manicure",
+    "duration": 45,
+    "price": 45
+  },
+  {
+    "id": "45",
+    "salonId": "13",
+    "name": "pedicure",
+    "duration": 55,
+    "price": 53
+  },
+  {
+    "id": "46",
+    "salonId": "13",
+    "name": "nail repair",
+    "duration": 35,
+    "price": 35
+  },
+  {
+    "id": "47",
+    "salonId": "13",
+    "name": "nail art",
+    "duration": 40,
+    "price": 47
+  },
+  {
+    "id": "48",
+    "salonId": "14",
+    "name": "threading",
+    "duration": 35,
+    "price": 32
+  },
+  {
+    "id": "49",
+    "salonId": "14",
+    "name": "extensions",
+    "duration": 40,
+    "price": 43
+  },
+  {
+    "id": "50",
+    "salonId": "14",
+    "name": "lamination",
+    "duration": 25,
+    "price": 28
+  },
+  {
+    "id": "51",
+    "salonId": "15",
+    "name": "manicure",
+    "duration": 45,
+    "price": 60
+  },
+  {
+    "id": "52",
+    "salonId": "15",
+    "name": "pedicure",
+    "duration": 55,
+    "price": 65
+  },
+  {
+    "id": "53",
+    "salonId": "15",
+    "name": "nail repair",
+    "duration": 35,
+    "price": 42
+  }
+]
