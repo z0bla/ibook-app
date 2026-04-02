@@ -1,11 +1,19 @@
 import { SalonsListScreenProps } from '@/navigation/types';
-import { Text } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import salonsList from 'src/data/salons.json';
 
 export default function SalonsListScreen({ route }: SalonsListScreenProps) {
   return (
-    <Text>
-      <Text>ItemID:</Text>
-      <Text>{route.params!.categoryId}</Text>
-    </Text>
+    <FlatList
+      data={salonsList.filter(
+        (salon) => salon.categoryId === route.params!.categoryId,
+      )}
+      renderItem={({ item }) => (
+        <View>
+          <Text>{item.id}</Text>
+          <Text>{item.name}</Text>
+        </View>
+      )}
+    />
   );
 }
