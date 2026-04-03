@@ -1,6 +1,6 @@
 import { Service } from '@/types/salon.types';
 import { Button, Card, Text } from 'react-native-paper';
-import { GestureResponderEvent, StyleSheet, View } from 'react-native';
+import { GestureResponderEvent } from 'react-native';
 
 export interface ServiceCardProps {
   service: Service;
