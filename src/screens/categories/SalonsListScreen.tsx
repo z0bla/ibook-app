@@ -1,6 +1,6 @@
 import SalonCard from '@/components/booking/SalonCard';
 import { SalonsListScreenProps } from '@/navigation/types';
-import { FlatList, GestureResponderEvent, Text, View } from 'react-native';
+import { FlatList, GestureResponderEvent } from 'react-native';
 import salonsList from 'src/data/salons.json';
 
 export default function SalonsListScreen({ route }: SalonsListScreenProps) {
