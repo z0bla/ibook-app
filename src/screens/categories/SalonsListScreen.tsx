@@ -1,9 +1,12 @@
 import SalonCard from '@/components/booking/SalonCard';
 import { SalonsListScreenProps } from '@/navigation/types';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { FlatList, GestureResponderEvent } from 'react-native';
 import salonsList from 'src/data/salons.json';
 
 export default function SalonsListScreen({ route }: SalonsListScreenProps) {
+  const navigation = useNavigation<StackNavigationProp<any>>();
   return (
     <FlatList
       data={salonsList.filter(
@@ -13,7 +16,7 @@ export default function SalonsListScreen({ route }: SalonsListScreenProps) {
         <SalonCard
           salon={item}
           onPressCallback={(e: GestureResponderEvent) => {
-            console.log(item.id);
+            navigation.navigate('SalonDetail', { salonId: item.id });
           }}
         />
       )}
