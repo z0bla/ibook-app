@@ -31,7 +31,7 @@ export interface BookingState {
   selectedService: Service; //booked service
   selectedDate: Date; //date
   selectedTime: TimeSlot; //time
-  appointments: Appointment[]; //appointments array
+  appointments?: Appointment[]; //appointments array
 }
 /**Type for booking context
  * @interface
