@@ -75,7 +75,9 @@ export interface BookingContextType {
    */
   resetBooking: () => void;
 }
-
+/**
+ * Actions type for booking reducer
+ */
 export type BookingAction =
   | { type: 'SELECT_SALON'; payload: string }
   | { type: 'SELECT_SERVICE'; payload: string }
