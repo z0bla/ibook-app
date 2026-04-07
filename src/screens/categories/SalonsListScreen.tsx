@@ -1,5 +1,6 @@
+import SalonCard from '@/components/booking/SalonCard';
 import { SalonsListScreenProps } from '@/navigation/types';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, GestureResponderEvent } from 'react-native';
 import salonsList from 'src/data/salons.json';
 
 export default function SalonsListScreen({ route }: SalonsListScreenProps) {
@@ -9,10 +10,12 @@ export default function SalonsListScreen({ route }: SalonsListScreenProps) {
         (salon) => salon.categoryId === route.params!.categoryId,
       )}
       renderItem={({ item }) => (
-        <View>
-          <Text>{item.id}</Text>
-          <Text>{item.name}</Text>
-        </View>
+        <SalonCard
+          salon={item}
+          onPressCallback={(e: GestureResponderEvent) => {
+            console.log(item.id);
+          }}
+        />
       )}
     />
   );
