@@ -10,6 +10,8 @@ import salons from '@/data/salons.json';
 import services from '@/data/services.json';
 import React, { createContext, useReducer } from 'react';
 import { useAuth } from '@/hooks';
+import { Alert } from 'react-native';
+import { readAppointments, updateAppointments } from '@/utils/booking.utils';
 
 /**
  * Initial object for salon
@@ -193,7 +195,7 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     ) {
       throw new Error('Salon, Service, Time, and Date must be selected!');
     } else {
-      return {
+      let booked: Appointment = {
         id: generateId(),
         userId: authContext.state.user!.id,
         salonId: state.selectedSalon.id,
@@ -204,7 +206,32 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
         status: 'booked',
         createdAt: new Date().toLocaleString(),
       };
+      //adding appointment to async storage
+      let apps = readAppointments().catch((e: Error) => {
+        throw new Error(e.message);
+      });
+      await (await apps).push(booked);
+      await updateAppointments(await apps);
+
+      Alert.alert('Your appointment has been booked.');
+      return booked;
     }
+  }
+  async function cancelAppointment(id: string) {
+    let apps = readAppointments().catch((e: Error) => {
+      throw new Error(e.message);
+    });
+    let app = (await apps).find((a) => a.id === id);
+    if (app) {
+      (await apps).filter((a) => a.id !== id);
+      updateAppointments(await apps).then((data) =>
+        Alert.alert('Appointment succesfully cancelled.'),
+      );
+    } else throw new Error('Appointment does not exist');
+  }
+
+  function resetBooking() {
+    dispatch({ type: 'RESET_BOOKING' });
   }
 
   return (
