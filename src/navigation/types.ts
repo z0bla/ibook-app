@@ -11,6 +11,14 @@ export type RootStackParamList = {
   Profile: undefined;
   Categories: undefined;
   SalonsList: { categoryId: string };
+  SalonDetail: { salonId: string };
 };
 
-export type SalonsListScreenProps = StackScreenProps<RootStackParamList>;
+export type SalonsListScreenProps = StackScreenProps<
+  RootStackParamList,
+  'SalonsList'
+>;
+export type SalonDetailScreenProps = StackScreenProps<
+  RootStackParamList,
+  'SalonDetail'
+>;
