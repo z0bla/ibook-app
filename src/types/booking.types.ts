@@ -18,7 +18,7 @@ export interface Appointment {
   salonId: string; //salon identifier
   serviceId: string; //service identifier
   date: Date; //date of the appointment
-  time: string; //time of the appointment
+  time: TimeSlot; //time of the appointment
   duration: number; //duration of the service
   status: string; //status of the appointment
   createdAt: string; //time of the creation of the appointment
@@ -31,38 +31,40 @@ export interface BookingState {
   selectedService: Service; //booked service
   selectedDate: Date; //date
   selectedTime: TimeSlot; //time
-  appointments: Appointment[]; //appointments array
+  appointments?: Appointment[]; //appointments array
 }
 /**Type for booking context
  * @interface
  */
 export interface BookingContextType {
+  /**
+   * Booking state object
+   */
+  state: BookingState;
   /** method for selecting a salon
    * @param {string} id id for selecting a salon
-   * @returns {Salon} selected salon
    */
-  selectSalon: (id: string) => Salon;
+  selectSalon: (id: string) => void;
   /**method for selecting a Service
    *
    * @param {string} id id for selecting a service
-   * @returns {Service} selected service
    */
-  selectService: (id: string) => Service;
+  selectService: (id: string) => void;
   /**method for selecting a date for an appointment
    *
-   * @returns {Date} selected date
+   * @param {Date} selected date
    */
-  selectDate: () => Date;
+  selectDate: (date: Date) => void;
   /**method for selecting time for an appointment
    *
-   * @returns {Timeslot} time for an appointment
+   * @param {Timeslot} time for an appointment
    */
-  selectTime: () => TimeSlot;
+  selectTime: (time: TimeSlot) => void;
   /**method for creating an Appointment object
    *
    * @returns {Appointment} created Appointment object
    */
-  bookAppointment: () => Appointment;
+  bookAppointment: () => Promise<Appointment>;
   /**Canceling an existing appointment
    *
    * @param {string} id of an appointment to cancel
@@ -75,14 +77,12 @@ export interface BookingContextType {
    */
   resetBooking: () => void;
 }
-/**
- * Actions type for booking reducer
- */
+
 export type BookingAction =
   | { type: 'SELECT_SALON'; payload: string }
   | { type: 'SELECT_SERVICE'; payload: string }
-  | { type: 'SELECT_DATE' }
-  | { type: 'SELECT_TIME' }
+  | { type: 'SELECT_DATE'; payload: Date }
+  | { type: 'SELECT_TIME'; payload: TimeSlot }
   | { type: 'ADD_APPOINTMENT'; payload: Appointment }
   | { type: 'REMOVE_APPOINTMENT'; payload: string }
   | { type: 'RESET_BOOKING' };
