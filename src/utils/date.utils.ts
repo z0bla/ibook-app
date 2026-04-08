@@ -1,5 +1,7 @@
 import { addDays, format, isSameDay, startOfToday } from 'date-fns';
 
+import { Salon } from '@/types/salon.types';
+
 export function formatDate(date: Date): string {
   return format(date, 'EEE, MMM d');
 }
@@ -48,4 +50,29 @@ export function getTimeSlots(
 
 export function isSameDayAs(date1: Date, date2: Date): boolean {
   return isSameDay(date1, date2);
+}
+
+export function getOperatingHours(
+  salon: Salon,
+  dayOfWeek: string,
+): string | null {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  // If wrong day
+  if (!days.includes(dayOfWeek)) {
+    return null;
+  }
+
+  const [dayRange, hours] = salon.operatingHours.split(' ');
+  const [startDay, endDay] = dayRange.split('-');
+
+  const startDayIndex = days.indexOf(startDay);
+  const endDayIndex = days.indexOf(endDay);
+  const dayIndex = days.indexOf(dayOfWeek);
+
+  if (dayIndex >= startDayIndex && dayIndex <= endDayIndex) {
+    return hours;
+  } else {
+    return null;
+  }
 }
