@@ -1,4 +1,4 @@
-import { addDays, format, startOfToday } from 'date-fns';
+import { addDays, format, isSameDay, startOfToday } from 'date-fns';
 
 export function formatDate(date: Date): string {
   return format(date, 'EEE, MMM d');
@@ -44,4 +44,8 @@ export function getTimeSlots(
   }
 
   return slots;
+}
+
+export function isSameDayAs(date1: Date, date2: Date): boolean {
+  return isSameDay(date1, date2);
 }
