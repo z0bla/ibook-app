@@ -174,18 +174,38 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(bookingReducer, initialState);
   const authContext = useAuth();
 
+  /**Selecting a Salon
+   *
+   * @param {string} id id of a salon
+   */
   function selectSalon(id: string): void {
     dispatch({ type: 'SELECT_SALON', payload: id });
   }
+  /**Selecting a Service
+   *
+   * @param {string} id id of a service
+   */
   function selectService(id: string): void {
     dispatch({ type: 'SELECT_SERVICE', payload: id });
   }
+  /**Selecting a Date
+   *
+   * @param {Date} date date for an appointment
+   */
   function selectDate(date: Date): void {
     dispatch({ type: 'SELECT_DATE', payload: date });
   }
+  /**Selecting a timeslot
+   *
+   * @param {TimeSlot} time time for an appointment
+   */
   function selectTime(time: TimeSlot): void {
     dispatch({ type: 'SELECT_TIME', payload: time });
   }
+  /**Completing the booking flow
+   *
+   * @returns {Promise<Appointment>} an Appointment object with selected properties
+   */
   async function bookAppointment(): Promise<Appointment> {
     if (
       !state.selectedSalon ||
@@ -212,16 +232,23 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       });
       await (await apps).push(booked);
       await updateAppointments(await apps);
-
+      //Confirmation of the succesfull booking
       Alert.alert('Your appointment has been booked.');
       return booked;
     }
   }
+  /**Canceling an appointment
+   *
+   * @param {string} id id of an appointment to be canceled
+   */
   async function cancelAppointment(id: string) {
+    //reading appointments from async storage
     let apps = readAppointments().catch((e: Error) => {
       throw new Error(e.message);
     });
+    //finding the appointment requested for deleting
     let app = (await apps).find((a) => a.id === id);
+    //removing requested appointment and updating appointments array in async storage
     if (app) {
       (await apps).filter((a) => a.id !== id);
       updateAppointments(await apps).then((data) =>
@@ -229,7 +256,9 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       );
     } else throw new Error('Appointment does not exist');
   }
-
+  /**Resetting the booking flow, that is, updating booking state to initial state object
+   *
+   */
   function resetBooking() {
     dispatch({ type: 'RESET_BOOKING' });
   }
