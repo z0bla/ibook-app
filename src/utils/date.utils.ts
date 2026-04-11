@@ -1,6 +1,6 @@
 import { addDays, format, isSameDay, startOfToday } from 'date-fns';
 
-import { Salon } from '@/types/salon.types';
+import { Salon, Service } from '@/types/salon.types';
 
 export function formatDate(date: Date): string {
   return format(date, 'EEE, MMM d');
@@ -81,4 +81,27 @@ export function getOperatingHours(
     // Only one working day per week, eg. Sat
     return dayRange === dayOfWeek ? hours : null;
   }
+}
+
+export function generateAvailableSlots(
+  salon: Salon,
+  service: Service,
+  date: Date,
+): string[] {
+  // Get day of week from provided date
+  const dayOfWeek = format(date, 'EEE');
+
+  // Get operating hours for day
+  const hours = getOperatingHours(salon, dayOfWeek);
+
+  // If closed on that day, return empty array
+  if (hours === null) {
+    return [];
+  }
+
+  // Parse hours
+  const [startTime, endTime] = hours.split('-');
+
+  // Generate available slots
+  return getTimeSlots(startTime, endTime, service.duration);
 }
