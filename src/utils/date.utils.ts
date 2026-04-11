@@ -64,15 +64,21 @@ export function getOperatingHours(
   }
 
   const [dayRange, hours] = salon.operatingHours.split(' ');
-  const [startDay, endDay] = dayRange.split('-');
 
-  const startDayIndex = days.indexOf(startDay);
-  const endDayIndex = days.indexOf(endDay);
-  const dayIndex = days.indexOf(dayOfWeek);
+  if (dayRange.includes('-')) {
+    // More than one working day per week, e.g. Mon-Fri
+    const [startDay, endDay] = dayRange.split('-');
+    const startDayIndex = days.indexOf(startDay);
+    const endDayIndex = days.indexOf(endDay);
+    const dayIndex = days.indexOf(dayOfWeek);
 
-  if (dayIndex >= startDayIndex && dayIndex <= endDayIndex) {
-    return hours;
+    if (dayIndex >= startDayIndex && dayIndex <= endDayIndex) {
+      return hours;
+    } else {
+      return null;
+    }
   } else {
-    return null;
+    // Only one working day per week, eg. Sat
+    return dayRange === dayOfWeek ? hours : null;
   }
 }
