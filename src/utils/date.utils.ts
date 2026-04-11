@@ -105,3 +105,21 @@ export function generateAvailableSlots(
   // Generate available slots
   return getTimeSlots(startTime, endTime, service.duration);
 }
+
+export function calculateSlotEndTime(
+  startTime: string,
+  durationMinutes: number,
+): string {
+  // Parse hours and minutes
+  const [hours, minutes] = startTime.split(':').map(Number);
+
+  // Total minutes passed in the day at the end of slot time
+  const totalMinutes = hours * 60 + minutes + durationMinutes;
+
+  // Calculate end hours and minutes
+  const endHours = Math.floor(totalMinutes / 60);
+  const endMinutes = totalMinutes % 60;
+
+  // Return formatted end time string
+  return `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
+}
