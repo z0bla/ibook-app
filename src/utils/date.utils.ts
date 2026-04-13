@@ -1,4 +1,10 @@
-import { addDays, format, isSameDay, startOfToday } from 'date-fns';
+import {
+  addDays,
+  eachDayOfInterval,
+  format,
+  isSameDay,
+  startOfToday,
+} from 'date-fns';
 
 import { Salon, Service } from '@/types/salon.types';
 
@@ -8,11 +14,10 @@ export function formatDate(date: Date): string {
 
 export function getNext4Weeks(): Date[] {
   const today = startOfToday();
-  const weeks: Date[] = [];
-
-  for (let i = 0; i < 28; i++) {
-    weeks.push(addDays(today, i));
-  }
+  const weeks: Date[] = eachDayOfInterval({
+    start: today,
+    end: addDays(today, 27),
+  });
 
   return weeks;
 }
