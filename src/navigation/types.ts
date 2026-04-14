@@ -8,10 +8,18 @@ export type AuthStackParamList = {
 export type RootStackParamList = {
   Auth: undefined;
   App: undefined;
+  Loading: undefined;
   Profile: undefined;
   Categories: undefined;
   SalonsList: { categoryId: string };
   SalonDetail: { salonId: string };
+};
+
+export type AppTabParamList = {
+  Home: undefined;
+  Categories: undefined;
+  Appointments: undefined;
+  Profile: undefined;
 };
 
 export type SalonsListScreenProps = StackScreenProps<

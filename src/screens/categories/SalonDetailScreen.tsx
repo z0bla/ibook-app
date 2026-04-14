@@ -1,5 +1,8 @@
 import ServiceCard from '@/components/booking/ServiceCard';
-import { SalonDetailScreenProps } from '@/navigation/types';
+import {
+  BookingStackParamList,
+  SalonDetailScreenProps,
+} from '@/navigation/types';
 import { Salon, Service } from '@/types/salon.types';
 import {
   ScrollView,
@@ -12,8 +15,10 @@ import { Text, DataTable, Button } from 'react-native-paper';
 import salons from 'src/data/salons.json';
 import services from 'src/data/services.json';
 
-export default function SalonDetailScreen({ route }: SalonDetailScreenProps) {
-  let salon: Salon = salons.find((sal) => sal.id === route.params.salonId)!;
+export default function SalonDetailScreen({
+  SalonDetail,
+}: BookingStackParamList) {
+  let salon: Salon = salons.find((sal) => sal.id === SalonDetail.salonId)!;
   let servicesList: Service[] = services.filter(
     (serv: Service) => serv.salonId === salon.id,
   );
