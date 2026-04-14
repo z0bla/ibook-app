@@ -40,7 +40,7 @@ export default function AppNavigator() {
         }}
       />
       <Tabs.Screen
-        name="Browse"
+        name="Categories"
         component={BrowseStack}
         options={{
           tabBarIcon: ({ focused, color, size }) => {
