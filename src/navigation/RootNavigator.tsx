@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks';
-import AppNavigator from '@/screens/AppNavigator';
+import AppNavigator from '@/navigation/AppNavigator';
 import { View, StyleSheet } from 'react-native';
 import { ActivityIndicator, Text } from 'react-native-paper';
 import AuthNavigator from './AuthNavigator';

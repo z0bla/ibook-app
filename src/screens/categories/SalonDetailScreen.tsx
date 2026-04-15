@@ -1,6 +1,9 @@
 import ServiceCard from '@/components/booking/ServiceCard';
 import { SalonDetailScreenProps } from '@/navigation/types';
 import { Salon, Service } from '@/types/salon.types';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useLayoutEffect } from 'react';
 import {
   ScrollView,
   Image,
@@ -14,6 +17,11 @@ import services from 'src/data/services.json';
 
 export default function SalonDetailScreen({ route }: SalonDetailScreenProps) {
   let salon: Salon = salons.find((sal) => sal.id === route.params.salonId)!;
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: salon.name });
+  });
+
   let servicesList: Service[] = services.filter(
     (serv: Service) => serv.salonId === salon.id,
   );
