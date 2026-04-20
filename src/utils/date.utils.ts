@@ -1,10 +1,4 @@
-import {
-  addDays,
-  eachDayOfInterval,
-  format,
-  isSameDay,
-  startOfToday,
-} from 'date-fns';
+import { addWeeks, eachDayOfInterval, format, isSameDay } from 'date-fns';
 
 import { Salon, Service } from '@/types/salon.types';
 
@@ -12,14 +6,9 @@ export function formatDate(date: Date): string {
   return format(date, 'EEE, MMM d');
 }
 
-export function getNext4Weeks(): Date[] {
-  const today = startOfToday();
-  const weeks: Date[] = eachDayOfInterval({
-    start: today,
-    end: addDays(today, 27),
-  });
-
-  return weeks;
+export function getNext4Weeks(): Date {
+  const today = Date.now();
+  return addWeeks(today, 4);
 }
 
 export function getTimeSlots(
@@ -127,4 +116,38 @@ export function calculateSlotEndTime(
 
   // Return formatted end time string
   return `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
+}
+
+export function getWorkingDays(
+  salon: Salon,
+  startDate: Date,
+  endDate: Date,
+): Date[] {
+  let resDays: Date[] = [];
+  const daysOfWeek: string[] = [
+    'sun',
+    'mon',
+    'tue',
+    'wed',
+    'thu',
+    'fri',
+    'sat',
+  ];
+  //get days of the week when the salon is working
+  let dayString: string = salon.operatingHours.split(' ')[0];
+  let dayRange: number[] = [];
+  if (dayString.includes('-')) {
+    const [first, last] = dayString.split('-');
+    let firstIndex = daysOfWeek.indexOf(first.toLowerCase());
+    let lastIndex = daysOfWeek.indexOf(last.toLowerCase());
+    let i = firstIndex;
+    while (i <= lastIndex) {
+      dayRange.push(i);
+      i++;
+    }
+  } else dayRange.push(daysOfWeek.indexOf(dayString));
+  let interval: Date[] = eachDayOfInterval({ start: startDate, end: endDate });
+
+  resDays = interval.filter((day) => dayRange.includes(day.getDay()));
+  return resDays;
 }

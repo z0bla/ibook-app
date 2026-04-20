@@ -1,26 +1,26 @@
 import ServiceCard from '@/components/booking/ServiceCard';
+import { useBooking } from '@/hooks';
 import { SalonDetailScreenProps } from '@/navigation/types';
 import { Salon, Service } from '@/types/salon.types';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useLayoutEffect } from 'react';
-import {
-  ScrollView,
-  Image,
-  View,
-  useWindowDimensions,
-  Alert,
-} from 'react-native';
-import { Text, DataTable, Button } from 'react-native-paper';
+import { useEffect, useLayoutEffect } from 'react';
+import { ScrollView, Image, View, useWindowDimensions } from 'react-native';
+import { Text, DataTable } from 'react-native-paper';
 import salons from 'src/data/salons.json';
 import services from 'src/data/services.json';
 
 export default function SalonDetailScreen({ route }: SalonDetailScreenProps) {
   let salon: Salon = salons.find((sal) => sal.id === route.params.salonId)!;
+  const { selectSalon, selectService } = useBooking();
   const navigation = useNavigation<StackNavigationProp<any>>();
+
+  useEffect(() => {
+    selectSalon(salon.id);
+  }, []);
   useLayoutEffect(() => {
     navigation.setOptions({ title: salon.name });
-  });
+  }, []);
 
   let servicesList: Service[] = services.filter(
     (serv: Service) => serv.salonId === salon.id,
@@ -75,18 +75,14 @@ export default function SalonDetailScreen({ route }: SalonDetailScreenProps) {
           return (
             <ServiceCard
               service={item}
-              onSelectCallback={() => {}}
+              onSelectCallback={() => {
+                selectService(item.id);
+                navigation.navigate('Calendar');
+              }}
               key={item.id}
             />
           );
         })}
-        <Button
-          mode="contained"
-          style={{ marginBottom: 20, marginTop: 10 }}
-          onPress={() => Alert.alert('Booking Flow is not ready yet')}
-        >
-          Book Now
-        </Button>
       </View>
     </ScrollView>
   );
