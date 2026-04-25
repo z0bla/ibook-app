@@ -84,7 +84,7 @@ export default function SignupScreen() {
         onChangeText={(text) => setName(text)}
         mode="outlined"
         onBlur={() => {
-          name.length < 3 || name.length > 15
+          return name.length < 3 || name.length > 15
             ? setNameError(false)
             : setNameError(true);
         }}
@@ -112,7 +112,7 @@ export default function SignupScreen() {
         onChangeText={(text) => setPhone(text)}
         mode="outlined"
         onBlur={() => {
-          /^\d{3}\/?\d{3}\-?\d{3,4}$/.test(phone)
+          return /^\d{3}\/?\d{3}\-?\d{3,4}$/.test(phone)
             ? setPhoneError(false)
             : setPhoneError(true);
         }}
