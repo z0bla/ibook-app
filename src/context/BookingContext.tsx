@@ -9,7 +9,7 @@ import { Salon, Service } from '@/types/salon.types';
 import salons from '@/data/salons.json';
 import services from '@/data/services.json';
 import React, { createContext, useReducer } from 'react';
-import { useAuth } from '@/hooks';
+import { useAuth } from '@/hooks/useAuth';
 import { Alert } from 'react-native';
 import { readAppointments, updateAppointments } from '@/utils/booking.utils';
 
@@ -26,7 +26,7 @@ const emptySalon: Salon = {
   rating: 0,
   reviewCount: 0,
   image: '',
-  operatingHours: '',
+  operatingHours: [],
 };
 /**
  * initial service object

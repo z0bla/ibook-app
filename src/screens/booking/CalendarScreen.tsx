@@ -74,8 +74,9 @@ export default function CalendarScreen() {
         maxDate={lastDay.toDateString()}
         markingType="period"
         markedDates={marked}
-        onDayPress={() => {
-          Alert.alert('SelectTime component is not ready');
+        onDayPress={(date) => {
+          context.selectDate(new Date(date.dateString));
+          navigation.navigate('SelectTime' as never);
         }}
       />
     </ScrollView>
