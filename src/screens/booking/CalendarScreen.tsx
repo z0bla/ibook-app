@@ -1,5 +1,5 @@
 import { useBooking } from '@/hooks';
-import { Alert, BackHandler, ScrollView } from 'react-native';
+import { BackHandler, ScrollView } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import { Calendar } from 'react-native-calendars';
 import { getNext4Weeks, getWorkingDays } from '@/utils/date.utils';
