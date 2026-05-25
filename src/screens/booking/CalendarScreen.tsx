@@ -1,5 +1,5 @@
 import { useBooking } from '@/hooks';
-import { Alert, BackHandler, ScrollView } from 'react-native';
+import { BackHandler, ScrollView } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import { Calendar } from 'react-native-calendars';
 import { getNext4Weeks, getWorkingDays } from '@/utils/date.utils';
@@ -74,8 +74,9 @@ export default function CalendarScreen() {
         maxDate={lastDay.toDateString()}
         markingType="period"
         markedDates={marked}
-        onDayPress={() => {
-          Alert.alert('SelectTime component is not ready');
+        onDayPress={(date) => {
+          context.selectDate(new Date(date.dateString));
+          navigation.navigate('SelectTime' as never);
         }}
       />
     </ScrollView>

@@ -11,6 +11,7 @@ import SalonDetailScreen from '@/screens/categories/SalonDetailScreen';
 import { useAuth } from '@/hooks';
 import CalendarScreen from '@/screens/booking/CalendarScreen';
 import { BookingProvider } from 'src/context/BookingContext';
+import SelectTimeScreen from '@/screens/booking/SelectTimeScreen';
 
 const Tabs = createBottomTabNavigator<AppTabParamList>();
 
@@ -30,6 +31,7 @@ export default function AppNavigator() {
           component={CalendarScreen}
           options={{ title: 'Select Date' }}
         />
+        <Stack.Screen name="SelectTime" component={SelectTimeScreen} />
       </Stack.Navigator>
     );
   }

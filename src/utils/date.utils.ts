@@ -51,29 +51,20 @@ export function getOperatingHours(
   dayOfWeek: string,
 ): string | null {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
   // If wrong day
   if (!days.includes(dayOfWeek)) {
     return null;
   }
 
-  const [dayRange, hours] = salon.operatingHours.split(' ');
+  const hours: string[] = salon.operatingHours;
 
-  if (dayRange.includes('-')) {
-    // More than one working day per week, e.g. Mon-Fri
-    const [startDay, endDay] = dayRange.split('-');
-    const startDayIndex = days.indexOf(startDay);
-    const endDayIndex = days.indexOf(endDay);
-    const dayIndex = days.indexOf(dayOfWeek);
-
-    if (dayIndex >= startDayIndex && dayIndex <= endDayIndex) {
-      return hours;
-    } else {
-      return null;
-    }
+  let hour = hours.find((h) => {
+    return h.includes(dayOfWeek);
+  });
+  if (!hour) {
+    return null;
   } else {
-    // Only one working day per week, eg. Sat
-    return dayRange === dayOfWeek ? hours : null;
+    return hour;
   }
 }
 
@@ -86,16 +77,14 @@ export function generateAvailableSlots(
   const dayOfWeek = format(date, 'EEE');
 
   // Get operating hours for day
-  const hours = getOperatingHours(salon, dayOfWeek);
-
+  let hours = getOperatingHours(salon, dayOfWeek);
   // If closed on that day, return empty array
   if (hours === null) {
     return [];
   }
-
+  hours = hours.split(' ')[1];
   // Parse hours
   const [startTime, endTime] = hours.split('-');
-
   // Generate available slots
   return getTimeSlots(startTime, endTime, service.duration);
 }
@@ -125,29 +114,35 @@ export function getWorkingDays(
 ): Date[] {
   let resDays: Date[] = [];
   const daysOfWeek: string[] = [
-    'sun',
-    'mon',
-    'tue',
-    'wed',
-    'thu',
-    'fri',
-    'sat',
+    'Sun',
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat',
   ];
   //get days of the week when the salon is working
-  let dayString: string = salon.operatingHours.split(' ')[0];
   let dayRange: number[] = [];
-  if (dayString.includes('-')) {
-    const [first, last] = dayString.split('-');
-    let firstIndex = daysOfWeek.indexOf(first.toLowerCase());
-    let lastIndex = daysOfWeek.indexOf(last.toLowerCase());
-    let i = firstIndex;
-    while (i <= lastIndex) {
-      dayRange.push(i);
-      i++;
-    }
-  } else dayRange.push(daysOfWeek.indexOf(dayString));
+  salon.operatingHours.forEach((op) => {
+    dayRange.push(daysOfWeek.indexOf(op.split(' ')[0]));
+  });
   let interval: Date[] = eachDayOfInterval({ start: startDate, end: endDate });
 
   resDays = interval.filter((day) => dayRange.includes(day.getDay()));
   return resDays;
+}
+export function checkIntervalOverlap(
+  t1: string,
+  t2: string,
+  duration: number,
+): boolean {
+  const end1 = calculateSlotEndTime(t1, duration);
+  const end2 = calculateSlotEndTime(t2, duration);
+  return (
+    (t1 >= t2 && t1 < end2) ||
+    (end1 > t2 && end1 <= end2) ||
+    (t2 >= t1 && t2 < end1) ||
+    (end2 > t1 && end2 <= end1)
+  );
 }
