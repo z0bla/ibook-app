@@ -7,3 +7,9 @@ export interface Notification {
   sent: boolean;
   message: string;
 }
+
+/** Type represening a notification state */
+export interface NotificationState {
+  notifications: Notification[];
+  permissionStatus: 'undetermined' | 'granted' | 'denied';
+}
