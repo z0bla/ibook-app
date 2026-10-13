@@ -1,3 +1,5 @@
+import { Appointment } from './booking.types';
+
 /** Type representing a notification */
 export interface Notification {
   id: string;
@@ -12,4 +14,12 @@ export interface Notification {
 export interface NotificationState {
   notifications: Notification[];
   permissionStatus: 'undetermined' | 'granted' | 'denied';
+}
+
+/** Type representing a notification context */
+export interface NotificationContextType {
+  state: NotificationState;
+  scheduleNotifications: (appointment: Appointment) => Promise<void>;
+  cancelNotifications: (appointmentId: string) => Promise<void>;
+  requestPermission: () => Promise<boolean>;
 }
