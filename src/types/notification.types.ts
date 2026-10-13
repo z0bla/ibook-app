@@ -2,12 +2,12 @@ import { Appointment } from './booking.types';
 
 /** Type representing a notification */
 export interface Notification {
-  id: string;
-  appointmentdId: string;
-  type: '24_hours' | '1_hour';
-  scheduledTime: Date;
-  sent: boolean;
-  message: string;
+  id: string; // notification identifier
+  appointmentdId: string; // appointment identifier this notification belongs to
+  type: '24_hours' | '1_hour'; // notification type
+  scheduledTime: Date; // date/time when notification should be shown
+  sent: boolean; // whether notification has been sent
+  message: string; // notification text displayed to user
 }
 
 /** Type representing a notification state */
