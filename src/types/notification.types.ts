@@ -12,8 +12,8 @@ export interface Notification {
 
 /** Type representing a notification state */
 export interface NotificationState {
-  notifications: Notification[];
-  permissionStatus: 'undetermined' | 'granted' | 'denied';
+  notifications: Notification[]; // notification records
+  permissionStatus: 'undetermined' | 'granted' | 'denied'; // whether notification permission is undetermined, granted, or denied by user
 }
 
 /** Type representing a notification context */
