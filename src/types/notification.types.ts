@@ -18,8 +18,14 @@ export interface NotificationState {
 
 /** Type representing a notification context */
 export interface NotificationContextType {
-  state: NotificationState;
+  state: NotificationState; // notification state object
+
+  /** schedule 1-hour and 24-hour notifications for appointment */
   scheduleNotifications: (appointment: Appointment) => Promise<void>;
+
+  /** cancel all scheduled notifications for appointment */
   cancelNotifications: (appointmentId: string) => Promise<void>;
+
+  /** request notification permission from user */
   requestPermission: () => Promise<boolean>;
 }
